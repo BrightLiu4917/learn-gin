@@ -1,0 +1,5 @@
+package Db
+
+func Connect() {
+
+}
