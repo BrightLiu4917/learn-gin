@@ -14,10 +14,10 @@ var (
 )
 
 // Connect 初始化数据库连接 (单例模式)
-func Connect() *gorm.DB {
+func init() {
 	dbOnce.Do(func() {
 		var err error
-		dbInstance, err = gorm.Open("mysql", "root:root@(10.123.234.48:3306)/learn-gin?charset=utf8mb4&parseTime=True&loc=Local")
+		dbInstance, err = gorm.Open("mysql", "root:root@(192.168.110.167:3306)/learn-gin?charset=utf8mb4&parseTime=True&loc=Local")
 		if err != nil {
 			panic("数据库连接失败: " + err.Error())
 		}
@@ -26,7 +26,7 @@ func Connect() *gorm.DB {
 		dbInstance.DB().SetMaxIdleConns(10)
 		dbInstance.DB().SetMaxOpenConns(100)
 	})
-	return dbInstance
+	//return dbInstance
 }
 
 // GetDB 获取数据库实例
@@ -42,4 +42,5 @@ func Close() {
 	if dbInstance != nil {
 		_ = dbInstance.Close()
 	}
+
 }
