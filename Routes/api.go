@@ -18,5 +18,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		v1.POST("/create-user", userController.CreateUser)
 		v1.GET("/list-user", userController.GetAllUser)
 		v1.GET("/first-user", userController.FirstUser)
+		v1.POST("/update-user", userController.UpdateUser)
+		v1.POST("/delete-user", userController.DeleteUser)
 	}
 }

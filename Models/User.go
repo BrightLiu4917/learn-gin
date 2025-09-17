@@ -6,7 +6,7 @@ import (
 
 // 用户模型
 type User struct {
-	Id        uint      `gorm:"column:id;type:int(11) unsigned;primary_key;AUTO_INCREMENT" json:"id"`
+	Id        int       `gorm:"column:id;type:int(11) unsigned;primary_key;AUTO_INCREMENT" json:"id"`
 	RealName  string    `gorm:"column:real_name;type:varchar(32);NOT NULL" json:"real_name"`
 	UserName  string    `gorm:"column:user_name;type:varchar(32);NOT NULL" json:"user_name"`
 	Password  string    `gorm:"column:password;type:varchar(64);NOT NULL" json:"password"`
