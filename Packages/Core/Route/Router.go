@@ -2,9 +2,13 @@ package Route
 
 import "github.com/gin-gonic/gin"
 
-var routeInstance *gin.Engine
+var router *gin.Engine
 
-func InitRoute() *gin.Engine {
-	routeInstance = gin.Default()
-	return routeInstance
+func init() {
+	router = gin.Default()
+	// 可在此添加全局中间件
+}
+
+func GetRouter() *gin.Engine {
+	return router
 }

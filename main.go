@@ -1,3 +1,4 @@
+// main.go
 package main
 
 import (
@@ -6,7 +7,9 @@ import (
 )
 
 func main() {
+	// 初始化系统
 	Init.Bootstrap()
-	Route.InitRoute().Run(":7002")
 
+	// 启动服务
+	Route.GetRouter().Run(":7002")
 }

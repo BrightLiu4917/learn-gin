@@ -6,7 +6,10 @@ import (
 )
 
 func Bootstrap() {
-	//Db.Connect()
-	Route.InitRoute()
-	Routes.RegisterAPIRoutes(Route.InitRoute())
+	// 1. 初始化数据库等基础组件
+	// Db.Connect()
+
+	// 2. 获取路由实例并注册路由
+	router := Route.GetRouter()
+	Routes.RegisterAPIRoutes(router)
 }
