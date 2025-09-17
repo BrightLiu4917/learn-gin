@@ -7,6 +7,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+// 声明全局变量
 var (
 	dbInstance *gorm.DB
 	dbOnce     sync.Once

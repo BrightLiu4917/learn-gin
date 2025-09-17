@@ -14,6 +14,6 @@ func RegisterAPIRoutes(r *gin.Engine) {
 	{
 		userController := Controllers.NewUserController()
 		// 注册一个路由
-		v1.GET("/create-user", userController.CreateUser)
+		v1.POST("/create-user", userController.CreateUser)
 	}
 }
