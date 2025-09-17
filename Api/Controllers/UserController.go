@@ -20,7 +20,7 @@ func NewUserController() *UserController {
 	userService := Services.NewUserService()
 	if userService == nil {
 		// 处理服务初始化失败的情况
-		panic("failed to initialize user service")
+		panic("初始化 user service 错误")
 	}
 	return &UserController{
 		service: *userService,
@@ -68,7 +68,7 @@ func (c *UserController) FirstUser(ctx *gin.Context) {
 
 func (c *UserController) UpdateUser(ctx *gin.Context) {
 	// 1. 获取并验证ID
-
+	id := ctx.Query("id")
 	// 2. 绑定请求数据
 	var user Models.User
 	if err := ctx.ShouldBindJSON(&user); err != nil {
@@ -76,11 +76,12 @@ func (c *UserController) UpdateUser(ctx *gin.Context) {
 		Response.Error(ctx, 400, "无效的请求数据")
 		return
 	}
-	id := user.Id
 
-	// 3. 记录请求日志
-	log.Printf("更新用户请求 | ID: %d | 数据: %+v", id, user)
-
+	_, err := c.service.FirstUser(id)
+	if err != nil {
+		Response.Error(ctx, 500, "数据不存在")
+		return
+	}
 	// 4. 调用服务层
 	if err := c.service.UpdateUser(user.Id, &user); err != nil {
 		// 根据错误类型返回不同状态码
@@ -108,5 +109,12 @@ func (u *UserController) DeleteUser(ctx *gin.Context) {
 		return
 	}
 	id := user.Id
+	_, err := u.service.FirstUser(ctx.Query("id"))
+	if err != nil {
+		Response.Error(ctx, 500, "数据不存在")
+		return
+	}
 	u.service.DeleteUser(id)
+
+	Response.SuccessWithMessage(ctx, "删除成功", gin.H{})
 }

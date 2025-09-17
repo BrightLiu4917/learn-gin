@@ -32,7 +32,7 @@ func (u *UserService) GetAllUser() ([]Models.User, error) {
 	return users, result.Error
 }
 
-func (u *UserService) FirstUser(id string) (Models.User, error) {
+func (u *UserService) FirstUser(id interface{}) (Models.User, error) {
 	var user Models.User
 	result := u.db.First(&user, id)
 	return user, result.Error
