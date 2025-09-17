@@ -16,7 +16,7 @@ var (
 func Connect() *gorm.DB {
 	dbOnce.Do(func() {
 		var err error
-		dbInstance, err = gorm.Open("mysql", "root:root@(local-mysql8:3306)/gin?charset=utf8mb4&parseTime=True&loc=Local")
+		dbInstance, err = gorm.Open("mysql", "root:root@(10.123.234.48:3306)/learn-gin?charset=utf8mb4&parseTime=True&loc=Local")
 		if err != nil {
 			panic("数据库连接失败: " + err.Error())
 		}
