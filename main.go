@@ -1,13 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"learn-gin/Packages/Core/Init"
+	"learn-gin/Packages/Core/Route"
 )
 
 func main() {
-	route := gin.Default()
-	route.GET("/", func(context *gin.Context) {
-		context.String(200, "hello world")
-	})
-	route.Run(":8000")
+	Init.Bootstrap()
+	Route.InitRoute().Run(":7002")
+
 }
